@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1200">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jamel Salik Portfolio</title>
 
 <!-- Font Awesome -->
@@ -19,8 +19,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background: #0a0a0a;
   color: #e5e5e5;
-  overflow-x: auto;
-  min-width:1200px; /* Force desktop layout */
+  overflow-x: hidden;
 }
 
 /* Particle Background */
@@ -44,20 +43,55 @@ body {
 
 /* Intro Section */
 .intro {
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  height:100vh; text-align:center; padding:20px;
+  display:flex; 
+  justify-content:center; 
+  align-items:center; 
+  height:100vh; 
+  padding:20px; 
   margin-top:50px; /* space for motivation bar */
+  text-align:center;
 }
-.intro h1 { font-size:3rem; color:#06b6d4; margin-bottom:10px; }
-.intro p { font-size:1.2rem; color:#9ca3af; margin:5px 0; }
-.highlight { color:#a855f7; font-weight:bold; }
 
-/* Typewriter effect */
-.typewriter span { border-right:3px solid #06b6d4; display:inline-block; animation: blink 0.7s infinite; }
+.intro-bg {
+  background: rgba(0,0,0,0.6);
+  padding: 30px 40px;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+}
+
+/* Gradient Animated Heading */
+#typewriter {
+  font-size:3rem;
+  font-weight:bold;
+  background: linear-gradient(90deg, #06b6d4, #a855f7, #facc15, #06b6d4);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientSlide 5s ease infinite;
+  margin-bottom:10px;
+}
+@keyframes gradientSlide {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+/* Typewriter Cursor */
+.typewriter span { 
+  border-right:3px solid #06b6d4; 
+  display:inline-block; 
+  animation: blink 0.7s infinite; 
+}
 @keyframes blink { 50% { border-color: transparent; } }
 
+.intro p { font-size:1.2rem; color:#d1d5db; margin:5px 0; }
+.highlight { color:#a855f7; font-weight:bold; }
+
 /* Layout */
-.layout { display:flex; flex-wrap:wrap; max-width:1200px; margin:auto; padding:20px; gap:20px; }
+.layout {
+  display:flex; flex-wrap:wrap; max-width:1200px; margin:auto; padding:20px; gap:20px;
+}
 
 /* Sidebar */
 .sidebar {
@@ -122,6 +156,15 @@ footer { text-align:center; padding:15px; background: rgba(20,20,20,0.6); backdr
 .modal-content p { line-height:1.6; font-size:15px; margin-top:15px; }
 .close-btn { position:absolute; top:15px; right:20px; font-size:24px; font-weight:bold; color:#a855f7; cursor:pointer; }
 .close-btn:hover { color:#06b6d4; }
+
+/* Responsive Layout */
+@media(max-width:768px){
+  .layout { flex-direction:column; }
+  .sidebar { max-width:100%; }
+  .content { flex:1; }
+  .intro h1 { font-size:2rem; }
+  .intro p { font-size:1rem; }
+}
 </style>
 </head>
 <body>
@@ -134,10 +177,12 @@ footer { text-align:center; padding:15px; background: rgba(20,20,20,0.6); backdr
 
 <!-- Intro Section -->
 <section class="intro">
-  <h1 id="typewriter"></h1>
-  <p class="highlight">Second Year Computer Science Student</p>
-  <p class="intro-motivation">Studying at <span class="highlight">Cotabato State University</span></p>
-  <p class="intro-motivation">Aspiring <span class="highlight">Full Stack Developer</span> 🚀</p>
+  <div class="intro-bg">
+    <h1 id="typewriter"></h1>
+    <p class="highlight">Second Year Computer Science Student</p>
+    <p class="intro-motivation">Studying at <span class="highlight">Cotabato State University</span></p>
+    <p class="intro-motivation">Aspiring <span class="highlight">Full Stack Developer</span> 🚀</p>
+  </div>
 </section>
 
 <!-- Layout -->
@@ -208,13 +253,15 @@ particlesJS("particles-js", {
 
 /* Typewriter effect */
 const typewriterText = "Hi, I'm Jamel Kasan Salik";
-let i=0;
-const typeEl=document.getElementById("typewriter");
+let i = 0;
+const typeEl = document.getElementById("typewriter");
 function typeWriter(){
-  if(i<typewriterText.length){
+  if(i < typewriterText.length){
     typeEl.innerHTML += typewriterText.charAt(i);
     i++;
-    setTimeout(typeWriter,100);
+    setTimeout(typeWriter, 100);
+  } else {
+    typeEl.innerHTML += '<span class="typewriter"></span>';
   }
 }
 typeWriter();
@@ -248,5 +295,3 @@ setInterval(() => {
 </script>
 </body>
 </html>
-
-
