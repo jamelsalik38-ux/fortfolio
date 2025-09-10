@@ -1,108 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jamel Salik | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Jamel Salik Portfolio</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #0a0a0a;
+  color: #e5e5e5;
+  overflow-x: auto;
+  min-width:1200px; /* Force desktop layout */
+}
+
+/* Particle Background */
+#particles-js {
+  position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
+}
+
+/* Motivation Bar */
+.motivation-bar {
+  position: fixed;
+  top:0; left:0; width:100%; padding:10px 20px;
+  background: rgba(20,20,20,0.8); backdrop-filter:blur(6px);
+  font-size:16px; color:#a855f7; text-align:center; z-index:1000;
+  border-bottom:1px solid rgba(6,182,212,0.3);
+  animation: fadeInMotivation 1s ease;
+}
+@keyframes fadeInMotivation {
+  0% { opacity:0; transform:translateY(-20px); }
+  100% { opacity:1; transform:translateY(0); }
+}
+
+/* Intro Section */
+.intro {
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  height:100vh; text-align:center; padding:20px;
+  margin-top:50px; /* space for motivation bar */
+}
+.intro h1 { font-size:3rem; color:#06b6d4; margin-bottom:10px; }
+.intro p { font-size:1.2rem; color:#9ca3af; margin:5px 0; }
+.highlight { color:#a855f7; font-weight:bold; }
+
+/* Typewriter effect */
+.typewriter span { border-right:3px solid #06b6d4; display:inline-block; animation: blink 0.7s infinite; }
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* Layout */
+.layout { display:flex; flex-wrap:wrap; max-width:1200px; margin:auto; padding:20px; gap:20px; }
+
+/* Sidebar */
+.sidebar {
+  flex:1; max-width:300px;
+  background: rgba(20,20,20,0.6); padding:20px; border-radius:16px;
+  backdrop-filter: blur(12px); text-align:center; border:1px solid rgba(168,85,247,0.4);
+  box-shadow:0 0 25px rgba(0,255,255,0.2);
+}
+.profile-pic { width:120px; height:120px; border-radius:50%; border:3px solid #06b6d4; object-fit:cover; margin-bottom:15px; }
+.sidebar h1 { color:#fff; font-size:22px; margin-bottom:5px; }
+.sidebar .role, .sidebar .school { font-size:14px; color:#cbd5e1; }
+
+/* Contact */
+.contact { margin:15px 0; text-align:left; font-size:14px; }
+.contact p { display:flex; align-items:center; gap:10px; margin:8px 0; }
+.contact i { color:#06b6d4; }
+.contact a { color:#a855f7; text-decoration:none; font-weight:bold; }
+
+/* Buttons */
+.btn-cert, .btn-motivation {
+  display:inline-block; margin-top:12px; padding:10px 15px;
+  background: linear-gradient(135deg,#a855f7,#06b6d4);
+  border-radius:10px; color:white; text-decoration:none; font-weight:bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:0 0 15px rgba(168,85,247,0.6);
+}
+.btn-cert:hover, .btn-motivation:hover { transform:scale(1.05); box-shadow:0 0 25px rgba(6,182,212,0.8); }
+
+/* Main Content */
+.content { flex:3; display:flex; flex-direction:column; gap:20px; }
+
+/* Cards */
+.card {
+  background: rgba(20,20,20,0.6); padding:25px; border-radius:16px;
+  backdrop-filter:blur(12px); border:1px solid rgba(6,182,212,0.3);
+  box-shadow:0 0 20px rgba(168,85,247,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor:pointer;
+}
+.card:hover { transform: translateY(-5px); box-shadow:0 0 30px rgba(6,182,212,0.6); }
+.card h2 { color:#06b6d4; margin-bottom:15px; }
+.card p { color:#d1d5db; }
+
+/* Skills */
+.skills { display:flex; flex-wrap:wrap; gap:20px; }
+.skill { flex:1 1 120px; background:rgba(255,255,255,0.05); padding:20px; border-radius:12px; text-align:center; transition: transform 0.3s ease, background 0.3s ease; box-shadow:0 0 10px rgba(168,85,247,0.2); }
+.skill:hover { transform:translateY(-6px); background:rgba(168,85,247,0.2); box-shadow:0 0 20px rgba(6,182,212,0.6); }
+.skill i { font-size:40px; margin-bottom:8px; }
+.skill span { display:block; font-weight:bold; }
+.skills .skill:nth-child(1) i { color:#e34f26; } /* HTML */
+.skills .skill:nth-child(2) i { color:#1572b6; } /* CSS */
+.skills .skill:nth-child(3) i { color:#f7df1e; } /* JS */
+.skills .skill:nth-child(4) i { color:#512bd4; } /* C# */
+.skills .skill:nth-child(5) i { color:#181717; } /* GitHub */
+
+/* Footer */
+footer { text-align:center; padding:15px; background: rgba(20,20,20,0.6); backdrop-filter:blur(10px); font-size:14px; color:#9ca3af; border-top:1px solid rgba(6,182,212,0.2); margin-top:auto; }
+
+/* Modals */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); justify-content:center; align-items:center; backdrop-filter: blur(4px); z-index:100; }
+.modal-content { background:#111827; padding:30px; border-radius:16px; max-width:800px; text-align:center; color:#e5e5e5; border:1px solid rgba(168,85,247,0.5); position:relative; }
+.modal-content h2 { margin-bottom:15px; color:#06b6d4; }
+.modal-content p { line-height:1.6; font-size:15px; margin-top:15px; }
+.close-btn { position:absolute; top:15px; right:20px; font-size:24px; font-weight:bold; color:#a855f7; cursor:pointer; }
+.close-btn:hover { color:#06b6d4; }
+</style>
 </head>
 <body>
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
 
-  <!-- LAYOUT -->
-  <div class="layout">
-    
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-      <h1>Jamel Salik</h1>
-      <p class="role">Computer Science Student</p>
-      <p class="school">Cotabato State University • 2nd Year</p>
+<!-- Particle Background -->
+<div id="particles-js"></div>
 
-      <div class="contact">
-        <p><i class="fa-solid fa-phone"></i> 09531395473</p>
-        <p><i class="fa-solid fa-envelope"></i> jamelsalik38@gmail.com</p>
-        <p><i class="fa-brands fa-facebook"></i> <a href="https://facebook.com/" target="_blank">Facebook</a></p>
+<!-- Motivation Bar -->
+<div class="motivation-bar" id="motivation-bar">Loading motivation...</div>
+
+<!-- Intro Section -->
+<section class="intro">
+  <h1 id="typewriter"></h1>
+  <p class="highlight">Second Year Computer Science Student</p>
+  <p class="intro-motivation">Studying at <span class="highlight">Cotabato State University</span></p>
+  <p class="intro-motivation">Aspiring <span class="highlight">Full Stack Developer</span> 🚀</p>
+</section>
+
+<!-- Layout -->
+<div class="layout">
+  <aside class="sidebar">
+    <img src="profile.jpg" alt="Profile" class="profile-pic">
+    <h1>Jamel Kasan Salik</h1>
+    <p class="role">Computer Science Student</p>
+    <p class="school">Cotabato State University</p>
+
+    <div class="contact">
+      <p><i class="fas fa-phone"></i> 09531395473</p>
+      <p><i class="fas fa-envelope"></i> jamelsalik38@gmail.com</p>
+      <p><i class="fab fa-facebook"></i> <a href="#">Contact me on Facebook</a></p>
+    </div>
+
+    <a href="#" class="btn-cert" id="cert-btn">📜 Visit Certificate</a>
+    <a href="#" class="btn-motivation" id="motivation-btn">💡 Motivation</a>
+  </aside>
+
+  <main class="content">
+    <div class="card">
+      <h2>About Me</h2>
+      <p>I am passionate about coding and technology. I aim to become a skilled Full Stack Developer and build amazing apps that solve real-world problems.</p>
+    </div>
+
+    <div class="card">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill"><i class="fab fa-html5"></i><span>HTML</span></div>
+        <div class="skill"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
+        <div class="skill"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+        <div class="skill"><i class="fas fa-code"></i><span>C#</span></div>
+        <div class="skill"><i class="fab fa-github"></i><span>GitHub</span></div>
       </div>
+    </div>
+  </main>
+</div>
 
-      <a href="#" class="btn-cert"><i class="fa-solid fa-award"></i> Visit my Certificate</a>
-    </aside>
+<footer>© 2025 Jamel Salik | Built with ❤️</footer>
 
-    <!-- MAIN CONTENT -->
-    <main class="content">
-      <!-- About -->
-      <section class="card">
-        <h2>About Me</h2>
-        <p>
-          Hi, I'm <strong>Jamel</strong>, a passionate <strong>Computer Science student</strong> currently in my 2nd year at 
-          <em>Cotabato State University</em>. I’m learning to become a <strong>Full Stack Developer</strong> with a focus on
-          modern UI/UX designs and backend development.
-        </p>
-      </section>
-
-      <!-- Skills -->
-      <section class="card">
-        <h2>Skills</h2>
-        <div class="skills">
-          <div class="skill"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
-          <div class="skill"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
-          <div class="skill"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
-          <div class="skill"><i class="fa-solid fa-code"></i><span>C#</span></div>
-          <div class="skill"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
-        </div>
-      </section>
-
-      <!-- Certificate -->
-      <section class="card">
-        <h2>Certificates</h2>
-        <p>I have completed training in <strong>Web Development</strong>. Check out my certificate:</p>
-        <a href="#" class="btn-cert"><i class="fa-solid fa-award"></i> View Web Development Certificate</a>
-      </section>
-    </main>
+<!-- Motivation Modal -->
+<div id="motivation-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>💡 Motivation</h2>
+    <p>Every great developer started as a beginner. Stay consistent, learn daily, and soon you'll become a Full Stack Developer ready for the IT industry! 🚀</p>
   </div>
+</div>
 
-  <footer>
-    <p>&copy; 2025 Jamel Salik | Portfolio</p>
-  </footer>
+<!-- Certificate Modal -->
+<div id="cert-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>📜 Web Dev Certificate</h2>
+    <img src="certificate.jpg" alt="Certificate" style="max-width:100%; border-radius:10px; margin-top:10px;">
+    <p>Soon I will earn real certificates and expand my skills to secure a career in IT. 🌟 Keep learning and growing!</p>
+  </div>
+</div>
 
-  <!-- Particles Config -->
-  <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 120 },
-        "color": { "value": "#00ffff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 3 },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#a855f7",
-          "opacity": 0.5,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2
-        }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "grab": { "distance": 200, "line_linked": { "opacity": 0.9 } }
-        }
-      },
-      "retina_detect": true
-    });
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+/* Particle Background */
+particlesJS("particles-js", {
+  particles:{number:{value:90}, size:{value:2}, move:{speed:1}, line_linked:{enable:true, distance:150, color:"#06b6d4", opacity:0.4, width:1}, color:{value:["#a855f7","#06b6d4","#ffffff"]}, opacity:{value:0.7}, shape:{type:"circle"}},
+  interactivity:{events:{onhover:{enable:true, mode:"grab"}, onclick:{enable:true, mode:"push"}}, modes:{grab:{distance:200,line_linked:{opacity:0.8}}, push:{particles_nb:4}}}
+});
+
+/* Typewriter effect */
+const typewriterText = "Hi, I'm Jamel Kasan Salik";
+let i=0;
+const typeEl=document.getElementById("typewriter");
+function typeWriter(){
+  if(i<typewriterText.length){
+    typeEl.innerHTML += typewriterText.charAt(i);
+    i++;
+    setTimeout(typeWriter,100);
+  }
+}
+typeWriter();
+
+/* Modal Logic */
+const motivationModal = document.getElementById("motivation-modal");
+const certModal = document.getElementById("cert-modal");
+document.getElementById("motivation-btn").onclick = () => motivationModal.style.display="flex";
+document.getElementById("cert-btn").onclick = (e) => { e.preventDefault(); certModal.style.display="flex"; }
+document.querySelectorAll(".close-btn").forEach(btn => btn.onclick = () => btn.parentElement.parentElement.style.display="none");
+window.onclick = e => { if(e.target===motivationModal) motivationModal.style.display="none"; if(e.target===certModal) certModal.style.display="none"; }
+
+/* Random Motivation Quotes */
+const quotes = [
+  "Code is like humor. When you have to explain it, it’s bad.",
+  "Stay curious, keep learning, and never give up!",
+  "Every great developer started as a beginner.",
+  "Dream big, code bigger.",
+  "Challenges are opportunities in disguise. Keep coding!"
+];
+const motivationBar = document.getElementById("motivation-bar");
+let currentQuote = 0;
+setInterval(() => {
+  motivationBar.style.opacity = 0;
+  setTimeout(() => {
+    motivationBar.textContent = quotes[currentQuote];
+    motivationBar.style.opacity = 1;
+    currentQuote = (currentQuote +1) % quotes.length;
+  }, 500);
+}, 5000);
+</script>
 </body>
 </html>
+
+
