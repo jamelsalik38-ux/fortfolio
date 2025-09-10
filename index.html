@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jamel Salik | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+      <h1>Jamel Salik</h1>
+      <p class="role">Computer Science Student</p>
+      <p class="school">Cotabato State University • 2nd Year</p>
+
+      <div class="contact">
+        <p><i class="fa-solid fa-phone"></i> 09531395473</p>
+        <p><i class="fa-solid fa-envelope"></i> jamelsalik38@gmail.com</p>
+        <p><i class="fa-brands fa-facebook"></i> <a href="https://facebook.com/" target="_blank">Facebook</a></p>
+      </div>
+
+      <a href="#" class="btn-cert"><i class="fa-solid fa-award"></i> Visit my Certificate</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+      <!-- About -->
+      <section class="card">
+        <h2>About Me</h2>
+        <p>
+          Hi, I'm <strong>Jamel</strong>, a passionate <strong>Computer Science student</strong> currently in my 2nd year at 
+          <em>Cotabato State University</em>. I’m learning to become a <strong>Full Stack Developer</strong> with a focus on
+          modern UI/UX designs and backend development.
+        </p>
+      </section>
+
+      <!-- Skills -->
+      <section class="card">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="skill"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+          <div class="skill"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+          <div class="skill"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+          <div class="skill"><i class="fa-solid fa-code"></i><span>C#</span></div>
+          <div class="skill"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+        </div>
+      </section>
+
+      <!-- Certificate -->
+      <section class="card">
+        <h2>Certificates</h2>
+        <p>I have completed training in <strong>Web Development</strong>. Check out my certificate:</p>
+        <a href="#" class="btn-cert"><i class="fa-solid fa-award"></i> View Web Development Certificate</a>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Jamel Salik | Portfolio</p>
+  </footer>
+
+  <!-- Particles Config -->
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 120 },
+        "color": { "value": "#00ffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#a855f7",
+          "opacity": 0.5,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2
+        }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 200, "line_linked": { "opacity": 0.9 } }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
