@@ -1,442 +1,452 @@
- <!doctype html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Jamel K Salik — Portfolio</title>
+<title>Jamel Salik — Portfolio</title>
 
-<!-- Font Awesome for icons -->
+<!-- icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-  :root{
-    --bg:#071018;
-    --glass: rgba(255,255,255,0.04);
-    --glass-2: rgba(255,255,255,0.02);
-    --muted:#9fb6c7;
-    --accent1:#ff7a18; /* orange */
-    --accent2:#ff4e50; /* red */
-    --cyan:#06b6d4; /* cyan */
-    --card-radius:14px;
-  }
+:root{
+  --bg:#08090b;
+  --card: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.04);
+  --muted: #9aa3ad;
+  --accent1: #ff7a18;
+  --accent2: #ff4e50;
+  --cyan: #06b6d4;
+  --radius: 14px;
+  --glass-border: rgba(255,255,255,0.06);
+}
 
-  *{box-sizing:border-box}
-  html,body{height:100%; margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial; background:
-    radial-gradient(800px 300px at 10% 10%, rgba(255,122,24,0.03), transparent 10%),
-    radial-gradient(700px 250px at 90% 85%, rgba(6,182,212,0.02), transparent 12%),
-    var(--bg); color:#e8f6fb; -webkit-font-smoothing:antialiased;}
-  a{color:inherit;text-decoration:none}
+*{box-sizing:border-box}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(ellipse at 20% 10%, rgba(255,120,30,0.03), transparent 15%),
+              radial-gradient(ellipse at 80% 85%, rgba(6,182,212,0.03), transparent 15%),
+              var(--bg);
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
 
-  /* layout */
-  .container{ max-width:1100px; margin:36px auto; padding:20px; display:grid; grid-template-columns:1fr 340px; gap:24px; align-items:start; }
-  @media(max-width:960px){ .container{ grid-template-columns:1fr; padding:14px } .aside{ order:-1 } }
+/* Page wrapper */
+.container{
+  max-width:1200px;
+  margin:48px auto;
+  padding:24px;
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:28px;
+}
 
-  /* custom cursor */
-  .cursor-dot, .cursor-ring { position:fixed; left:0; top:0; pointer-events:none; transform:translate(-50%,-50%); z-index:9999; transition:transform .12s linear, width .15s linear, height .15s linear, background .15s linear; mix-blend-mode:screen; }
-  .cursor-dot{ width:10px; height:10px; border-radius:50%; background: linear-gradient(90deg,var(--accent1),var(--accent2)); box-shadow:0 6px 16px rgba(255,90,40,0.12); }
-  .cursor-ring{ width:48px; height:48px; border-radius:50%; background:rgba(6,182,212,0.04); }
-  .cursor-hover .cursor-dot{ transform:translate(-50%,-50%) scale(1.9); background: rgba(255,255,255,0.06); }
-  .cursor-hover .cursor-ring{ transform:translate(-50%,-50%) scale(2.2); background: linear-gradient(90deg, rgba(6,182,212,0.06), rgba(255,122,24,0.03)); }
+/* Left column (main) */
+.main {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
 
-  /* HERO card */
-  .hero{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:var(--card-radius);
-    padding:26px;
-    border:1px solid var(--glass);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    overflow:hidden;
-    position:relative;
-  }
-  .hero-top{ display:flex; gap:18px; align-items:center; }
-  .profile {
-    width:120px; height:120px; border-radius:12px; overflow:hidden; flex:0 0 120px; border:3px solid rgba(255,255,255,0.03);
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  }
-  .profile img{ width:100%; height:100%; object-fit:cover; display:block }
+/* Top hero */
+.hero{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: var(--radius);
+  padding:28px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+}
 
-  .intro {
-    flex:1;
-  }
-  .eyebrow{ color:var(--muted); font-size:13px; letter-spacing:1px; margin-bottom:6px; }
-  .intro-title {
-    font-size:28px; font-weight:800; line-height:1; margin-bottom:6px;
-    background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  .typewriter { color:#d7f3fb; font-weight:600; margin-bottom:8px; min-height:40px; }
-  .intro-sub { color:var(--muted); font-size:14px; }
+.hero-left{
+  flex:1;
+}
 
-  .cta-row{ margin-top:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-  .btn-primary{
-    background: linear-gradient(90deg,var(--accent1),var(--accent2));
-    border:none; padding:10px 14px; border-radius:10px; color:#071422; font-weight:800; cursor:pointer;
-    box-shadow: 0 10px 30px rgba(255,90,40,0.12);
-  }
-  .btn-ghost{ background:transparent; padding:9px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:var(--muted); cursor:pointer; }
+.eyebrow {
+  color:var(--muted);
+  font-size:13px;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
 
-  /* motivation box */
-  .motivation{
-    margin-top:16px; display:flex; gap:10px; align-items:center; padding:12px; border-radius:12px; border:1px solid var(--glass-2);
-    background: linear-gradient(90deg, rgba(6,182,212,0.02), rgba(255,122,24,0.01));
-  }
-  .motivation i{ color:var(--cyan); font-size:18px; }
-  .motivation .motext{ color:#d9f7fb; font-weight:700; min-height:20px; }
+.title {
+  font-size:28px;
+  font-weight:700;
+  line-height:1.05;
+  margin-bottom:8px;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-  /* skills */
-  .section{ margin-top:20px; }
-  .section h3{ color:var(--cyan); margin:0 0 12px 0; font-size:18px; }
-  .skills-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
-  .skill {
-    display:flex; gap:12px; align-items:center; padding:12px; border-radius:10px; background: rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.02); transition: transform .28s ease, box-shadow .28s ease;
-  }
-  .skill:hover{ transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.6) }
-  .skill .icon{ width:46px; height:46px; display:grid; place-items:center; border-radius:8px; font-size:20px; color:#071422; }
-  .skill .title{ font-weight:700; color:#e8fbff }
+.subtitle {
+  color:var(--muted);
+  margin-bottom:12px;
+}
 
-  /* brand colors */
-  .skill.html .icon{ background: linear-gradient(90deg,#e34f26,#ff8a50); }
-  .skill.css .icon{ background: linear-gradient(90deg,#1572b6,#60a5fa); }
-  .skill.js .icon{ background: linear-gradient(90deg,#f7df1e,#ffd34d); color:#071422 }
-  .skill.csharp .icon{ background: linear-gradient(90deg,#512bd4,#9076f3); }
-  .skill.github .icon{ background: linear-gradient(90deg,#111,#444); color:#fff }
+.cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
 
-  /* projects (SOON placeholders, no images) */
-  .projects{ margin-top:20px }
-  .projects-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-  .proj {
-    height:160px; border-radius:12px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center;
-    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.007)); border:1px solid rgba(255,255,255,0.02);
-    position:relative; overflow:hidden; transition: transform .25s ease, box-shadow .25s ease;
-    cursor:pointer;
-  }
-  .proj:hover{ transform:translateY(-10px); box-shadow:0 24px 60px rgba(0,0,0,0.6) }
-  .proj .badge{ position:absolute; top:12px; right:12px; padding:8px 12px; border-radius:999px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#071422; font-weight:800; }
-  .proj .logo {
-    width:64px; height:64px; border-radius:12px; display:grid; place-items:center; margin-bottom:10px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.02);
-  }
-  .proj h4{ margin:8px 0 6px 0; color:#e8fbff }
-  .proj p{ margin:0; color:var(--muted) }
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  text-decoration:none;
+  color:#071229;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2));
+  box-shadow: 0 6px 18px rgba(255,90,40,0.12);
+}
 
-  /* subtle glowing animated ring inside projects */
-  .proj::after{
-    content:""; position:absolute; inset:-40%; background: radial-gradient(circle at 10% 20%, rgba(255,122,24,0.03), transparent 10%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.03), transparent 12%); transform:translateX(-6%); transition:transform .6s ease;
-  }
-  .proj:hover::after{ transform:translateX(6%); }
+.ghost {
+  padding:10px 12px;
+  background:transparent;
+  border-radius:10px;
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,0.03);
+}
 
-  /* certificates */
-  .certs{ margin-top:18px }
-  .cert-card{ padding:18px; border-radius:12px; background: rgba(255,255,255,0.02); text-align:center; border:1px solid rgba(255,255,255,0.02); }
+/* small stats */
+.stats {
+  display:flex;
+  gap:14px;
+  margin-top:14px;
+}
+.stat {
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);
+  text-align:center; min-width:96px;
+}
+.stat b{display:block; font-size:18px; color:#fff;}
+.stat span{font-size:12px; color:var(--muted)}
 
-  /* contact */
-  .contact-card{ margin-top:18px; padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border:1px solid rgba(255,255,255,0.02) }
-  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .contact-grid input, .contact-grid textarea{
-    padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02); background:rgba(255,255,255,0.02); color:#e8fbff;
-  }
-  .contact-grid textarea{ grid-column:1/-1; min-height:120px; resize:vertical }
-  .send-row{ grid-column:1/-1; display:flex; justify-content:flex-end; gap:10px; margin-top:6px; }
+/* Right column (profile card) */
+.profile-card{
+  position:sticky;
+  top:32px;
+  background: linear-gradient(180deg, rgba(6,182,212,0.02), rgba(255,255,255,0.01));
+  padding:20px;
+  border-radius:var(--radius);
+  border:1px solid var(--glass-border);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  text-align:center;
+}
+.profile-image{
+  width:160px;height:160px;border-radius:14px;overflow:hidden;margin:0 auto 14px;border:3px solid rgba(255,255,255,0.04);
+}
+.profile-image img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-name{font-weight:700;font-size:20px;margin-bottom:6px}
+.profile-role{color:var(--muted);font-size:13px;margin-bottom:8px}
+.profile-meta{display:flex;gap:10px;justify-content:center;color:var(--muted);font-size:13px;margin-bottom:10px}
+.profile-actions{display:flex;gap:10px;justify-content:center;margin-top:8px}
 
-  .success{ display:none; padding:10px; border-radius:8px; background:linear-gradient(90deg,#06b6d4,#34d399); color:#051425; font-weight:700; margin-bottom:10px; }
+/* Skills section */
+.section { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); padding:20px; border-radius:var(--radius); border:1px solid rgba(255,255,255,0.02); }
+.section h3{margin:0 0 12px 0;color:var(--cyan);}
 
-  /* aside / profile card */
-  .aside .card{ padding:18px; border-radius:12px; background: rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.02); text-align:center; }
-  .aside .name{ font-weight:800; font-size:18px; color:#fff }
-  .aside .role{ color:var(--muted); font-size:13px; margin-bottom:6px }
+.skills-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+}
 
-  footer{ text-align:center; margin:30px auto; color:var(--muted); font-size:13px; padding-bottom:30px }
+.skill-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+  transition: transform .28s ease, box-shadow .28s ease;
+  text-align:left;
+}
+.skill-card:hover{ transform:translateY(-8px); box-shadow: 0 10px 30px rgba(6,182,212,0.08); }
+.skill-row{display:flex;align-items:center;gap:12px}
+.skill-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#081226}
+.skill-html{background:linear-gradient(135deg,#ff7a18,#ffb86b)}
+.skill-css{background:linear-gradient(135deg,#2196f3,#60a5fa)}
+.skill-js{background:linear-gradient(135deg,#f7df1e,#ffd34d)}
+.skill-csharp{background:linear-gradient(135deg,#6b46c1,#9f7aea)}
+.skill-git{background:linear-gradient(135deg,#111, #444)}
+
+.skill-title{font-weight:700;font-size:14px}
+.skill-desc{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* Projects coming soon */
+.projects-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap:16px;
+}
+.proj{
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  min-height:160px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  border:1px solid rgba(255,255,255,0.02);
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:600; color:var(--muted);
+}
+
+/* Contact form */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contact-grid input, .contact-grid textarea{
+  width:100%; padding:12px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.03);color:#e6eef6;
+}
+.contact-grid textarea{min-height:120px;resize:vertical}
+.send-row{display:flex;justify-content:flex-end;margin-top:8px}
+
+/* Toast Notification */
+#toast{
+  position: fixed; bottom: 30px; right: 30px; background: rgba(6,182,212,0.9);
+  color: #fff; padding: 14px 20px; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  font-weight: 500; opacity: 0; pointer-events: none; transition: all 0.4s ease; z-index: 9999;
+}
+
+/* top nav */
+.topbar{ position:fixed; top:10px; left:50%; transform:translateX(-50%); z-index:1000; display:flex; gap:8px; background:rgba(2,6,23,0.6); padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.03); }
+.topbar a{color:var(--muted); text-decoration:none; font-size:13px; padding:6px 8px; border-radius:8px;}
+.topbar a:hover{ color:#fff; background:rgba(255,255,255,0.02) }
+
+/* responsive */
+@media (max-width:980px){
+  .container{padding:12px}
+  .container .profile-card{position:relative; top:auto}
+}
+@media (max-width:880px){
+  .container{ grid-template-columns: 1fr; }
+  .profile-card{ order:-1; margin-bottom:8px}
+}
 </style>
 </head>
+
 <body>
+<div id="particles-js"></div>
 
-<!-- custom cursors -->
-<div class="cursor-dot" id="cDot"></div>
-<div class="cursor-ring" id="cRing"></div>
+<nav class="topbar" aria-label="quick links">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-<div class="container">
-  <!-- MAIN -->
-  <main>
-    <!-- HERO / INTRO -->
-    <section class="hero">
-      <div class="hero-top">
-        <div class="profile">
-          <!-- optional: replace profile.jpg -->
-          <img src="profile.jpg" alt="profile" onerror="this.style.opacity=.08">
+<main class="container" id="page">
+  <!-- left main -->
+  <div class="main">
+    <!-- hero -->
+    <section class="hero" id="about">
+      <div class="hero-left">
+        <div class="eyebrow">Full Stack Developer · Computer Science</div>
+        <div class="title" id="typed-title">Jamel K. Salik</div>
+        <div class="subtitle">I build modern, performant web applications — focused on JavaScript, C#, and accessible UX.</div>
+
+        <div class="cta-row">
+          <a class="btn" id="hireBtn"><i class="fa-solid fa-rocket"></i> Hire Me</a>
+          <a class="ghost" id="downloadBtn" href="certificate.jpg" download>📜 Certificate</a>
         </div>
 
-        <div class="intro">
-          <div class="eyebrow">SECOND YEAR • COMPUTER SCIENCE</div>
-          <div class="intro-title">Hi, I'm Jamel K Salik</div>
-
-          <div class="typewriter" id="introType" aria-live="polite"></div>
-
-          <div class="intro-sub">STUDY AT <strong>COTABATO STATE UNIVERSITY</strong> — Aspiring Full Stack Developer</div>
-
-          <div class="cta-row">
-            <button class="btn-primary" id="hireBtn" data-hover>Hire / Contact</button>
-            <button class="btn-ghost" id="certBtnHeader" data-hover>Certificates (Soon)</button>
-          </div>
-
-          <div class="motivation" style="margin-top:12px;">
-            <i class="fa-solid fa-lightbulb"></i>
-            <div class="motext" id="motivationType" aria-live="polite"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SKILLS -->
-      <div class="section">
-        <h3>Skills</h3>
-        <div class="skills-grid">
-          <div class="skill html"><div class="icon"><i class="fa-brands fa-html5"></i></div><div class="title">HTML</div></div>
-          <div class="skill css"><div class="icon"><i class="fa-brands fa-css3-alt"></i></div><div class="title">CSS</div></div>
-          <div class="skill js"><div class="icon"><i class="fa-brands fa-js"></i></div><div class="title">JavaScript</div></div>
-          <div class="skill csharp"><div class="icon"><i class="fa-solid fa-code"></i></div><div class="title">C#</div></div>
-          <div class="skill github"><div class="icon"><i class="fa-brands fa-github"></i></div><div class="title">GitHub</div></div>
-        </div>
-      </div>
-
-      <!-- PROJECTS (SOON placeholders) -->
-      <div class="projects">
-        <h3>Projects</h3>
-        <div class="projects-grid">
-          <div class="proj" data-name="Student Attendance">
-            <div class="badge">SOON</div>
-            <div class="logo"><i class="fa-solid fa-user-check" style="font-size:26px; color:var(--accent1)"></i></div>
-            <h4>Student Attendance</h4>
-            <p>Coming soon — Student attendance system (JS + LocalStorage / Backend later)</p>
-          </div>
-
-          <div class="proj" data-name="E-Commerce UI">
-            <div class="badge">SOON</div>
-            <div class="logo"><i class="fa-solid fa-cart-shopping" style="font-size:24px; color:var(--cyan)"></i></div>
-            <h4>E-Commerce UI</h4>
-            <p>Coming soon — Product grid, cart & checkout (frontend demo)</p>
-          </div>
-
-          <div class="proj" data-name="Portfolio Website">
-            <div class="badge">SOON</div>
-            <div class="logo"><i class="fa-solid fa-laptop-code" style="font-size:24px; color:#a78bfa"></i></div>
-            <h4>Portfolio Website</h4>
-            <p>Coming soon — polished portfolio & projects</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CERTIFICATES -->
-      <div class="certs section">
-        <h3>Certificates</h3>
-        <div class="cert-card" style="margin-top:12px">
-          <div style="padding:18px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.02)">
-            <strong>Certificates</strong>
-            <p style="color:var(--muted); margin-top:8px">Certificates will be added soon.</p>
-            <div style="margin-top:10px"><button class="btn-ghost" id="certBtn">View Certificates</button></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CONTACT -->
-      <div class="contact-card section">
-        <h3>Contact</h3>
-        <div class="contact-card-inner contact-card" style="margin-top:12px">
-          <div class="success" id="successBox">Message sent successfully — wait for my response. Thank you!</div>
-          <form id="contactForm" class="contact-grid" autocomplete="off">
-            <input id="name" type="text" placeholder="Your name" required>
-            <input id="email" type="email" placeholder="Your email" required>
-            <input id="subject" type="text" placeholder="Subject (optional)">
-            <textarea id="message" placeholder="Your message" required></textarea>
-            <div class="send-row">
-              <button class="btn-primary" type="submit" id="sendBtn">Message Me</button>
-              <button class="btn-ghost" type="reset">Reset</button>
-            </div>
-          </form>
+        <div class="stats" aria-hidden="true">
+          <div class="stat"><b>2+</b><span>Years Learning</span></div>
+          <div class="stat"><b>20+</b><span>Projects</span></div>
+          <div class="stat"><b>15+</b><span>Certificates</span></div>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- ASIDE -->
-  <aside class="aside">
-    <div class="card">
-      <div style="width:130px;height:130px;margin:0 auto;border-radius:12px;overflow:hidden;border:3px solid rgba(255,255,255,0.03)">
-        <img src="profile.jpg" alt="profile" style="width:100%;height:100%;object-fit:cover" onerror="this.style.opacity=.06">
-      </div>
-      <div style="margin-top:12px" class="name">Jamel K Salik</div>
-      <div class="role">2nd Year — Computer Science</div>
-      <div style="color:var(--muted); margin-top:8px; font-size:14px">Studying at Cotabato State University</div>
+    <!-- skills -->
+    <section class="section" id="skills">
+      <h3>Skills & Technologies</h3>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-row">
+            <div class="skill-icon skill-html"><i class="fa-brands fa-html5"></i></div>
+            <div>
+              <div class="skill-title">HTML</div>
+              <div class="skill-desc">Semantic markup, accessibility-first.</div>
+            </div>
+          </div>
+        </div>
 
-      <div style="margin-top:12px">
-        <button class="btn-primary" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth'})">Send Message</button>
-      </div>
+        <div class="skill-card">
+          <div class="skill-row">
+            <div class="skill-icon skill-css"><i class="fa-brands fa-css3-alt"></i></div>
+            <div>
+              <div class="skill-title">CSS</div>
+              <div class="skill-desc">Modern layouts, animations, responsive.</div>
+            </div>
+          </div>
+        </div>
 
-      <div style="margin-top:12px">
-        <div style="display:flex; gap:8px; justify-content:center">
-          <a href="#" class="btn-ghost" title="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="btn-ghost" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="mailto:jamelsalik38@gmail.com" class="btn-ghost" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <div class="skill-card">
+          <div class="skill-row">
+            <div class="skill-icon skill-js"><i class="fa-brands fa-js"></i></div>
+            <div>
+              <div class="skill-title">JavaScript</div>
+              <div class="skill-desc">Vanilla JS, DOM, ES6+, async patterns.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-row">
+            <div class="skill-icon skill-csharp"><i class="fa-solid fa-code"></i></div>
+            <div>
+              <div class="skill-title">C#</div>
+              <div class="skill-desc">Backend logic, APIs, data handling.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-row">
+            <div class="skill-icon skill-git"><i class="fa-brands fa-github"></i></div>
+            <div>
+              <div class="skill-title">Git & GitHub</div>
+              <div class="skill-desc">Version control, PRs, workflow</div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- projects -->
+    <section class="section" id="projects">
+      <h3>Projects</h3>
+      <div class="projects-grid">
+        <div class="proj">Coming Soon</div>
+        <div class="proj">Coming Soon</div>
+        <div class="proj">Coming Soon</div>
+      </div>
+    </section>
+
+    <!-- contact -->
+    <section class="section" id="contact">
+      <h3>Contact</h3>
+      <form id="contactForm" class="contact-grid" onsubmit="return false;">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="email" id="email" placeholder="Your email" required>
+        <input type="text" id="subject" placeholder="Subject">
+        <textarea id="message" placeholder="Your message" required></textarea>
+        <div class="send-row" style="grid-column:1/-1">
+          <button class="btn" id="sendBtn" type="button">Send Message</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- right sidebar / profile card -->
+  <aside class="profile-card">
+    <div class="profile-image">
+      <img src="profile.jpg" alt="Profile">
+    </div>
+    <div class="profile-name" id="typed-profile">Jamel K. Salik</div>
+    <div class="profile-role">2nd Year Computer Science</div>
+    <div class="profile-meta"><span>University:</span>&nbsp;<strong>Cotabato State Univ.</strong></div>
+
+    <div style="margin-top:10px; color:var(--muted); font-size:13px">
+      <div>Full Stack Developer (aspiring)</div>
     </div>
 
-    <div style="height:14px"></div>
-
-    <div class="card" style="padding:14px; margin-top:12px; text-align:left">
-      <strong style="color:var(--cyan)">Quick Info</strong>
-      <p style="color:var(--muted); margin-top:8px; font-size:14px">Contact: 09531395473<br>Email: jamelsalik38@gmail.com</p>
+    <div class="profile-actions">
+      <a class="btn" id="contactQuick"><i class="fa-solid fa-paper-plane"></i> Message</a>
     </div>
   </aside>
-</div>
+</main>
 
-<footer>© 2025 Jamel K Salik • Full Stack Developer (aspiring)</footer>
-
-<!-- modal for projects/certs (uses same modal) -->
-<div id="modal" style="display:none; position:fixed; inset:0; background:rgba(2,6,12,0.75); z-index:9999; align-items:center; justify-content:center; padding:18px;">
-  <div style="background:#071624; padding:18px; border-radius:12px; max-width:620px; width:100%; border:1px solid rgba(255,255,255,0.02)">
-    <div style="display:flex; justify-content:space-between; align-items:center">
-      <h3 id="modalTitle" style="margin:0; color:var(--accent1)"></h3>
-      <button id="closeModal" style="background:transparent; border:none; color:var(--muted); font-size:20px; cursor:pointer">✕</button>
-    </div>
-    <p id="modalBody" style="color:var(--muted); margin-top:12px"></p>
+<!-- footer -->
+<footer style="max-width:1200px;margin:18px auto 60px auto;padding:0 24px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <div style="color:var(--muted)">© 2025 Jamel Salik</div>
+    <div style="color:var(--muted)">Built with ❤️ • Full Stack Developer</div>
   </div>
-</div>
+</footer>
+
+<!-- toast notification -->
+<div id="toast">Message sent successfully! Please wait for my reply.</div>
 
 <script>
-/* ---------- CUSTOM CURSOR ---------- */
-const dot = document.getElementById('cDot');
-const ring = document.getElementById('cRing');
-let mouseX = -100, mouseY = -100;
-document.addEventListener('mousemove', (e)=>{
-  mouseX = e.clientX; mouseY = e.clientY;
-  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
-  ring.style.left = mouseX + 'px'; ring.style.top = mouseY + 'px';
-});
-
-// add hover effect for interactive elements
-const hoverables = document.querySelectorAll('button, a, .proj, .btn-ghost, .btn-primary');
-hoverables.forEach(el=>{
-  el.addEventListener('mouseenter', ()=> document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', ()=> document.body.classList.remove('cursor-hover'));
-});
-/* body class toggles CSS via class; implement by controlling ring/dot classes */
-const body = document.body;
-const observer = new MutationObserver(()=> {
-  if(body.classList.contains('cursor-hover')){
-    dot.style.transform = 'translate(-50%,-50%) scale(1.8)';
-    ring.style.transform = 'translate(-50%,-50%) scale(2.2)';
-    ring.style.background = 'linear-gradient(90deg, rgba(6,182,212,0.06), rgba(255,122,24,0.03))';
-  } else {
-    dot.style.transform = 'translate(-50%,-50%) scale(1)';
-    ring.style.transform = 'translate(-50%,-50%) scale(1)';
-    ring.style.background = 'rgba(6,182,212,0.04)';
+/* Particles background */
+(function createBackgroundDots(){
+  const container = document.getElementById('particles-js');
+  if(!container) return;
+  const canvas = document.createElement('canvas');
+  canvas.style.position='absolute';
+  canvas.style.inset='0';
+  canvas.style.width='100%';
+  canvas.style.height='100%';
+  canvas.style.zIndex='-1';
+  container.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+  addEventListener('resize', resize);
+  resize();
+  const dots = [];
+  for(let i=0;i<120;i++){
+    dots.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.6+0.6,
+      vx: (Math.random()-0.5)/2,
+      vy: (Math.random()-0.5)/2
+    });
   }
-});
-observer.observe(body, { attributes:true, attributeFilter:['class'] });
-
-/* ---------- TYPEWRITER INTRO ---------- */
-const introEl = document.getElementById('introType');
-const introTexts = [
-  "Second-year Computer Science student. I build modern web apps using HTML, CSS, JavaScript, and C#.",
-  "Focused on clean UI, responsive design, and real-world projects. Aspiring Full Stack Developer."
-];
-let ti = 0, tc = 0, tind = 0;
-function typeIntro(){
-  const str = introTexts[tind];
-  if(tc <= str.length){
-    introEl.textContent = str.substring(0, tc) + (tc % 2 ? "▌" : "");
-    tc++;
-    setTimeout(typeIntro, 40);
-  } else {
-    setTimeout(()=>{ tc = 0; tind = (tind+1) % introTexts.length; typeIntro(); }, 3200);
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const d of dots){
+      d.x += d.vx;
+      d.y += d.vy;
+      if(d.x<0)d.x=canvas.width;
+      if(d.x>canvas.width)d.x=0;
+      if(d.y<0)d.y=canvas.height;
+      if(d.y>canvas.height)d.y=0;
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,146,80,0.06)';
+      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
   }
-}
-typeIntro();
+  draw();
+})();
 
-/* ---------- MOTIVATION TYPEWRITER ---------- */
-const motoEl = document.getElementById('motivationType');
-const motos = [
-  "Small steps daily become big results.",
-  "Ship early, learn fast, iterate more.",
-  "Stay consistent — the future is code.",
-  "From student to full-stack dev: one step at a time."
-];
-let mi=0, mc=0, mind=0;
-function typeMoto(){
-  const s = motos[mind];
-  if(mc <= s.length){
-    motoEl.textContent = s.substring(0, mc) + (mc % 2 ? "" : "");
-    mc++;
-    setTimeout(typeMoto, 45);
-  } else {
-    setTimeout(()=>{ mc=0; mind=(mind+1)%motos.length; typeMoto(); }, 3500);
+/* Typed effect for intro */
+const typedTitle = document.getElementById('typed-title');
+let titleText = "Jamel K. Salik";
+let i = 0;
+function typeTitle(){
+  if(i<titleText.length){
+    typedTitle.textContent += titleText.charAt(i);
+    i++;
+    setTimeout(typeTitle,120);
   }
 }
-typeMoto();
+typedTitle.textContent='';
+typeTitle();
 
-/* ---------- PROJECT CARD TILT (mouse follow) ---------- */
-document.querySelectorAll('.proj').forEach(card=>{
-  card.addEventListener('mousemove', (e)=>{
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-    const cx = rect.width/2; const cy = rect.height/2;
-    const dx = (x - cx) / cx; const dy = (y - cy) / cy;
-    card.style.transform = `perspective(900px) rotateX(${ -dy * 6 }deg) rotateY(${ dx * 8 }deg) translateY(-6px)`;
-    card.style.boxShadow = `0 20px 50px rgba(0,0,0,0.6)`;
-  });
-  card.addEventListener('mouseleave', ()=>{ card.style.transform=''; card.style.boxShadow=''; });
-});
-
-/* ---------- CONTACT FORM (simulated send) ---------- */
-const form = document.getElementById('contactForm');
-const successBox = document.getElementById('successBox');
-form.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  if(!name || !email || !message){ alert('Please fill name, email, and message.'); return; }
-  const btn = document.getElementById('sendBtn');
-  btn.disabled = true; btn.textContent = 'Sending...';
+/* Contact form toast */
+document.getElementById('sendBtn').addEventListener('click', ()=>{
+  const n=document.getElementById('name').value.trim();
+  const e=document.getElementById('email').value.trim();
+  const s=document.getElementById('subject').value.trim();
+  const m=document.getElementById('message').value.trim();
+  if(!n||!e||!m){ alert('Please fill at least name, email, and message.'); return; }
+  document.getElementById('contactForm').reset();
+  const toast = document.getElementById('toast');
+  toast.style.opacity=1;
+  toast.style.transform="translateY(0px)";
   setTimeout(()=>{
-    btn.disabled = false; btn.textContent = 'Message Me';
-    successBox.style.display = 'block';
-    successBox.scrollIntoView({behavior:'smooth'});
-    form.reset();
-    setTimeout(()=> successBox.style.display = 'none', 7000);
-  }, 900);
-});
-
-/* ---------- MODAL (for certificates & project info) ---------- */
-const modal = document.getElementById('modal');
-const modalTitle = document.getElementById('modalTitle');
-const modalBody = document.getElementById('modalBody');
-const closeModalBtn = document.getElementById('closeModal');
-
-function openModal(title, text){ modalTitle.textContent = title; modalBody.textContent = text; modal.style.display = 'flex'; }
-function closeModal(){ modal.style.display = 'none'; }
-closeModalBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', (e)=> { if(e.target === modal) closeModal(); });
-
-document.querySelectorAll('.proj').forEach(p=>{
-  p.addEventListener('click', ()=> {
-    const name = p.dataset.name || 'Project';
-    openModal(name + " — Coming Soon", "This project is under development. Stay tuned — I'll publish a working demo and full details soon.");
-  });
-});
-document.getElementById('certBtn').addEventListener('click', ()=> openModal('Certificates', 'Certificates will be displayed here soon.'));
-document.getElementById('certBtnHeader').addEventListener('click', ()=> openModal('Certificates', 'Certificates will be displayed here soon.'));
-
-/* ---------- keyboard escape closes modal ---------- */
-document.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeModal(); modal.style.display='none'; } });
-
-/* ---------- small entry animations ---------- */
-window.addEventListener('load', ()=> {
-  document.querySelectorAll('.hero, .section, .proj, .card').forEach((el, idx)=>{
-    el.style.opacity = 0; el.style.transform = 'translateY(6px)';
-    setTimeout(()=> { el.style.transition = 'all .6s cubic-bezier(.2,.9,.2,1)'; el.style.opacity = 1; el.style.transform = ''; }, idx * 80 );
-  });
+    toast.style.opacity=0;
+    toast.style.transform="translateY(20px)";
+  },3000);
 });
 </script>
 </body>
 </html>
+
 
